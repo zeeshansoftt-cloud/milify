@@ -104,6 +104,7 @@
   "footer": {
     "rights": "Milify. All rights reserved.",
     "privacy": "Privacy",
-    "contact": "Contact"
+    "contact": "Contact",
+    "dashboardLogin": "Dashboard login"
   }
 }
