@@ -16,7 +16,7 @@ const nextConfig: NextConfig = {
       bodySizeLimit: "1mb",
     },
   },
-  serverExternalPackages: ["@libsql/client", "libsql"],
+  serverExternalPackages: ["postgres"],
 };
 
 export default withNextIntl(nextConfig);

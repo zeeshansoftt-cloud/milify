@@ -10,13 +10,13 @@ export async function Hero({ locale }: { locale: string }) {
     <section className="relative isolate overflow-hidden">
       <div className="absolute inset-0 -z-10">
         <Image
-          src="https://images.unsplash.com/photo-1672552226650-796f40198c47?w=2400&q=80&auto=format&fit=crop"
+          src="/images/architectural-sky.jpg"
           alt=""
           fill
           priority
           sizes="100vw"
           className="object-cover"
-          style={{ objectPosition: "center 55%" }}
+          style={{ objectPosition: "center 60%" }}
         />
         <div
           aria-hidden="true"

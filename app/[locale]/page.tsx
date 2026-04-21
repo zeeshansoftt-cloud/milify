@@ -29,7 +29,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
           body={<p>{why("body")}</p>}
           bullets={why.raw("bullets") as string[]}
           image={{
-            src: "https://images.unsplash.com/photo-1606836591695-4d58a73eba1e?w=1400&q=80&auto=format&fit=crop",
+            src: "/images/kid-wooden-toys.jpg",
             alt: "",
             ratio: "4/5",
             caption: why("imageCaption"),

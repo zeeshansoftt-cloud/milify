@@ -1,19 +1,26 @@
-import { sqliteTable, text, integer, uniqueIndex, index } from "drizzle-orm/sqlite-core";
-import { sql } from "drizzle-orm";
+import {
+  pgTable,
+  text,
+  boolean,
+  integer,
+  timestamp,
+  uniqueIndex,
+  index,
+} from "drizzle-orm/pg-core";
 
-export const tenants = sqliteTable("tenants", {
+export const tenants = pgTable("tenants", {
   id: text("id").primaryKey(),
   name: text("name").notNull(),
   token: text("token").notNull().unique(),
   locale: text("locale").notNull().default("sv"),
   note: text("note"),
-  isActive: integer("is_active", { mode: "boolean" }).notNull().default(true),
-  createdAt: text("created_at")
+  isActive: boolean("is_active").notNull().default(true),
+  createdAt: timestamp("created_at", { mode: "string", withTimezone: true })
     .notNull()
-    .default(sql`(CURRENT_TIMESTAMP)`),
+    .defaultNow(),
 });
 
-export const departments = sqliteTable(
+export const departments = pgTable(
   "departments",
   {
     id: text("id").primaryKey(),
@@ -22,16 +29,16 @@ export const departments = sqliteTable(
       .references(() => tenants.id, { onDelete: "cascade" }),
     name: text("name").notNull(),
     sortIndex: integer("sort_index").notNull().default(0),
-    createdAt: text("created_at")
+    createdAt: timestamp("created_at", { mode: "string", withTimezone: true })
       .notNull()
-      .default(sql`(CURRENT_TIMESTAMP)`),
+      .defaultNow(),
   },
   (t) => ({
     byTenant: index("idx_departments_tenant").on(t.tenantId, t.sortIndex),
   })
 );
 
-export const users = sqliteTable(
+export const users = pgTable(
   "users",
   {
     id: text("id").primaryKey(),
@@ -41,10 +48,10 @@ export const users = sqliteTable(
     email: text("email").notNull(),
     passwordHash: text("password_hash").notNull(),
     name: text("name").notNull().default(""),
-    isActive: integer("is_active", { mode: "boolean" }).notNull().default(true),
-    createdAt: text("created_at")
+    isActive: boolean("is_active").notNull().default(true),
+    createdAt: timestamp("created_at", { mode: "string", withTimezone: true })
       .notNull()
-      .default(sql`(CURRENT_TIMESTAMP)`),
+      .defaultNow(),
   },
   (t) => ({
     emailUnique: uniqueIndex("ux_users_email").on(t.email),
@@ -52,24 +59,24 @@ export const users = sqliteTable(
   })
 );
 
-export const sessions = sqliteTable(
+export const sessions = pgTable(
   "sessions",
   {
     id: text("id").primaryKey(),
     userId: text("user_id")
       .notNull()
       .references(() => users.id, { onDelete: "cascade" }),
-    expiresAt: text("expires_at").notNull(),
-    createdAt: text("created_at")
+    expiresAt: timestamp("expires_at", { mode: "string", withTimezone: true }).notNull(),
+    createdAt: timestamp("created_at", { mode: "string", withTimezone: true })
       .notNull()
-      .default(sql`(CURRENT_TIMESTAMP)`),
+      .defaultNow(),
   },
   (t) => ({
     byUser: index("idx_sessions_user").on(t.userId),
   })
 );
 
-export const checklists = sqliteTable(
+export const checklists = pgTable(
   "checklists",
   {
     id: text("id").primaryKey(),
@@ -83,11 +90,11 @@ export const checklists = sqliteTable(
       .notNull()
       .default("daily"),
     token: text("token").notNull().unique(),
-    isArchived: integer("is_archived", { mode: "boolean" }).notNull().default(false),
+    isArchived: boolean("is_archived").notNull().default(false),
     sortIndex: integer("sort_index").notNull().default(0),
-    createdAt: text("created_at")
+    createdAt: timestamp("created_at", { mode: "string", withTimezone: true })
       .notNull()
-      .default(sql`(CURRENT_TIMESTAMP)`),
+      .defaultNow(),
   },
   (t) => ({
     byTenant: index("idx_checklists_tenant").on(t.tenantId, t.isArchived, t.sortIndex),
@@ -95,7 +102,7 @@ export const checklists = sqliteTable(
   })
 );
 
-export const tasks = sqliteTable(
+export const tasks = pgTable(
   "tasks",
   {
     id: text("id").primaryKey(),
@@ -105,17 +112,17 @@ export const tasks = sqliteTable(
     title: text("title").notNull(),
     assignedUserId: text("assigned_user_id").references(() => users.id, { onDelete: "set null" }),
     sortIndex: integer("sort_index").notNull().default(0),
-    isArchived: integer("is_archived", { mode: "boolean" }).notNull().default(false),
-    createdAt: text("created_at")
+    isArchived: boolean("is_archived").notNull().default(false),
+    createdAt: timestamp("created_at", { mode: "string", withTimezone: true })
       .notNull()
-      .default(sql`(CURRENT_TIMESTAMP)`),
+      .defaultNow(),
   },
   (t) => ({
     byChecklist: index("idx_tasks_checklist").on(t.checklistId, t.isArchived, t.sortIndex),
   })
 );
 
-export const taskCompletions = sqliteTable(
+export const taskCompletions = pgTable(
   "task_completions",
   {
     id: text("id").primaryKey(),
@@ -126,9 +133,9 @@ export const taskCompletions = sqliteTable(
     userName: text("user_name").notNull().default(""),
     periodKey: text("period_key").notNull(),
     note: text("note").default(""),
-    completedAt: text("completed_at")
+    completedAt: timestamp("completed_at", { mode: "string", withTimezone: true })
       .notNull()
-      .default(sql`(CURRENT_TIMESTAMP)`),
+      .defaultNow(),
   },
   (t) => ({
     byTaskPeriod: index("idx_completions_task_period").on(t.taskId, t.periodKey),
@@ -136,7 +143,7 @@ export const taskCompletions = sqliteTable(
   })
 );
 
-export const messages = sqliteTable(
+export const messages = pgTable(
   "messages",
   {
     id: text("id").primaryKey(),
@@ -149,9 +156,9 @@ export const messages = sqliteTable(
     title: text("title").notNull(),
     body: text("body").notNull(),
     sourceLang: text("source_lang").notNull().default("sv"),
-    createdAt: text("created_at")
+    createdAt: timestamp("created_at", { mode: "string", withTimezone: true })
       .notNull()
-      .default(sql`(CURRENT_TIMESTAMP)`),
+      .defaultNow(),
   },
   (t) => ({
     byTenant: index("idx_messages_tenant").on(t.tenantId, t.createdAt),
@@ -159,7 +166,7 @@ export const messages = sqliteTable(
   })
 );
 
-export const messageTranslations = sqliteTable(
+export const messageTranslations = pgTable(
   "message_translations",
   {
     id: text("id").primaryKey(),
@@ -169,16 +176,16 @@ export const messageTranslations = sqliteTable(
     lang: text("lang").notNull(),
     title: text("title").notNull(),
     body: text("body").notNull(),
-    createdAt: text("created_at")
+    createdAt: timestamp("created_at", { mode: "string", withTimezone: true })
       .notNull()
-      .default(sql`(CURRENT_TIMESTAMP)`),
+      .defaultNow(),
   },
   (t) => ({
     uniq: uniqueIndex("ux_message_translations").on(t.messageId, t.lang),
   })
 );
 
-export const parentLinks = sqliteTable(
+export const parentLinks = pgTable(
   "parent_links",
   {
     id: text("id").primaryKey(),
@@ -189,10 +196,10 @@ export const parentLinks = sqliteTable(
     token: text("token").notNull().unique(),
     language: text("language").notNull().default("sv"),
     label: text("label").notNull().default(""),
-    isActive: integer("is_active", { mode: "boolean" }).notNull().default(true),
-    createdAt: text("created_at")
+    isActive: boolean("is_active").notNull().default(true),
+    createdAt: timestamp("created_at", { mode: "string", withTimezone: true })
       .notNull()
-      .default(sql`(CURRENT_TIMESTAMP)`),
+      .defaultNow(),
   },
   (t) => ({
     byTenant: index("idx_parent_links_tenant").on(t.tenantId),
