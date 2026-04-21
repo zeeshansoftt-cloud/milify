@@ -4,6 +4,7 @@ import { db } from "@/db/client";
 import { checklists, departments, parentLinks, tenants, users } from "@/db/schema";
 import { updateTenant } from "../../actions";
 import { CopyLink } from "../../components/CopyLink";
+import { qrSvg, publicUrl } from "@/lib/qr";
 
 export const dynamic = "force-dynamic";
 
@@ -23,8 +24,9 @@ export default async function TenantOverview({ params }: { params: Promise<{ id:
     db.select({ id: parentLinks.id }).from(parentLinks).where(eq(parentLinks.tenantId, id)).then((r) => r.length),
   ]);
 
-  const base = process.env.NEXT_PUBLIC_SITE_URL ?? "";
-  const hubUrl = `${base}/h/${tenant.token}`;
+  const hubUrl = publicUrl(`/h/${tenant.token}`);
+  const hubQrSvg = await qrSvg(hubUrl);
+  const hubQrDataUrl = `data:image/svg+xml;utf8,${encodeURIComponent(hubQrSvg)}`;
 
   return (
     <div className="grid grid-cols-1 lg:grid-cols-[1fr_1fr] gap-10">
@@ -63,12 +65,67 @@ export default async function TenantOverview({ params }: { params: Promise<{ id:
 
       <section>
         <h2 className="font-display text-h2 mb-4">Personallänk</h2>
-        <p className="text-small text-ink-70 mb-3">
-          Personal loggar in och öppnar denna URL för att se sin förskolas checklistor och uppföljning.
+        <p className="text-small text-ink-70 mb-4">
+          Personal loggar in och öppnar denna URL för att se sin förskolas checklistor och
+          uppföljning. Skanna QR-koden i mobilen för att öppna direkt.
         </p>
-        <div className="bg-white border border-rule rounded p-4 flex items-center gap-3">
-          <code className="text-caption text-ink-70 truncate flex-1">{hubUrl}</code>
-          <CopyLink url={hubUrl} />
+
+        <div className="relative overflow-hidden rounded-xl bg-ink text-paper">
+          <div
+            aria-hidden="true"
+            className="absolute inset-0 opacity-60"
+            style={{
+              background:
+                "radial-gradient(120% 120% at 0% 0%, #14594A 0%, transparent 55%), radial-gradient(120% 120% at 100% 100%, #0E4439 0%, transparent 60%)",
+            }}
+          />
+          <div
+            aria-hidden="true"
+            className="absolute inset-0 opacity-[0.08] mix-blend-overlay"
+            style={{
+              backgroundImage:
+                "url(\"data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 0.55 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>\")",
+            }}
+          />
+
+          <div className="relative grid grid-cols-1 sm:grid-cols-[auto_1fr] gap-6 p-6 md:p-7 items-center">
+            <div className="bg-paper rounded-lg p-3 shadow-soft w-[168px] h-[168px] flex items-center justify-center ring-1 ring-paper/40">
+              <div
+                className="w-full h-full [&>svg]:w-full [&>svg]:h-full"
+                dangerouslySetInnerHTML={{ __html: hubQrSvg }}
+              />
+            </div>
+
+            <div className="min-w-0">
+              <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded bg-paper/10 backdrop-blur-sm text-caption uppercase tracking-[0.14em] text-paper/80">
+                <span className="inline-block w-1.5 h-1.5 rounded-full bg-accent-soft" />
+                Personal — hubb
+              </div>
+              <div className="mt-3 font-display text-[22px] leading-tight text-paper">
+                {tenant.name}
+              </div>
+              <code className="mt-2 block text-caption text-paper/70 break-all">{hubUrl}</code>
+
+              <div className="mt-5 flex flex-wrap items-center gap-2">
+                <CopyLink url={hubUrl} tone="dark" />
+                <a
+                  href={hubQrDataUrl}
+                  download={`milify-staff-${tenant.token}.svg`}
+                  className="btn bg-paper/10 text-paper border border-paper/25 backdrop-blur-sm hover:bg-paper/15"
+                >
+                  Ladda ner QR (SVG)
+                </a>
+                <a
+                  href={hubUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="btn-ghost text-paper/80 hover:text-paper !px-2"
+                >
+                  Öppna →
+                </a>
+              </div>
+            </div>
+          </div>
         </div>
 
         <h2 className="font-display text-h2 mt-10 mb-4">Översikt</h2>

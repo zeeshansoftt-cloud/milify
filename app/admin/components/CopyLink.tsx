@@ -2,8 +2,24 @@
 
 import { useState } from "react";
 
-export function CopyLink({ url }: { url: string }) {
+type Tone = "light" | "dark";
+
+export function CopyLink({
+  url,
+  tone = "light",
+  label = "Kopiera länk",
+  copiedLabel = "Kopierat",
+}: {
+  url: string;
+  tone?: Tone;
+  label?: string;
+  copiedLabel?: string;
+}) {
   const [copied, setCopied] = useState(false);
+  const cls =
+    tone === "dark"
+      ? "btn bg-paper text-ink hover:bg-white"
+      : "btn-secondary";
   return (
     <button
       type="button"
@@ -14,9 +30,9 @@ export function CopyLink({ url }: { url: string }) {
           setTimeout(() => setCopied(false), 1500);
         } catch {}
       }}
-      className="btn-secondary"
+      className={cls}
     >
-      {copied ? "Copied" : "Copy link"}
+      {copied ? copiedLabel : label}
     </button>
   );
 }
