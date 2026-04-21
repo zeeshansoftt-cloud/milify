@@ -1,0 +1,18 @@
+export const supportedParentLangs = [
+  "sv",
+  "en",
+  "de",
+  "fr",
+  "es",
+  "it",
+  "pl",
+  "ar",
+  "fi",
+  "da",
+  "nb",
+  "nl",
+  "pt",
+  "tr",
+  "uk",
+  "ru",
+];

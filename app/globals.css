@@ -1,0 +1,118 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --paper: #f4f1ea;
+  --ink: #141519;
+  --accent: #14594a;
+}
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+    scroll-behavior: smooth;
+  }
+  body {
+    background-color: var(--paper);
+    color: var(--ink);
+    font-family: var(--font-sans), system-ui, sans-serif;
+    font-feature-settings: "ss01", "cv11";
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display), Georgia, serif;
+    font-weight: 400;
+    letter-spacing: -0.015em;
+  }
+  ::selection {
+    background: #14594a;
+    color: #f4f1ea;
+  }
+  *:focus-visible {
+    outline: 2px solid #14594a;
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+  hr {
+    border: 0;
+    border-top: 1px solid #e1ded5;
+  }
+}
+
+@layer components {
+  .kicker {
+    @apply text-caption uppercase tracking-[0.14em] text-ink-70;
+  }
+  .btn {
+    @apply inline-flex items-center justify-center h-11 px-5 rounded text-small font-medium transition-all duration-200 ease-out-soft;
+  }
+  .btn-primary {
+    @apply btn bg-accent text-paper hover:bg-accent-deep hover:shadow-soft hover:-translate-y-[1px];
+  }
+  .btn-secondary {
+    @apply btn bg-transparent text-ink border border-ink/15 hover:border-ink/30;
+  }
+  .btn-ghost {
+    @apply btn bg-transparent text-ink hover:bg-ink/5;
+  }
+  .chip {
+    @apply inline-flex items-center h-7 px-2.5 rounded text-caption font-medium;
+  }
+  .chip-ok {
+    @apply chip bg-accent-soft text-accent-deep;
+  }
+  .chip-attention {
+    @apply chip bg-[#F3DCCD] text-alert;
+  }
+  .chip-na {
+    @apply chip bg-ink/5 text-ink-70;
+  }
+  .chip-pending {
+    @apply chip bg-white text-ink-70 shadow-ring;
+  }
+  .input {
+    @apply w-full h-11 px-3 rounded bg-white border border-rule text-body text-ink placeholder:text-ink-40 focus:border-accent focus:outline-none transition-colors;
+  }
+  .textarea {
+    @apply w-full min-h-[96px] p-3 rounded bg-white border border-rule text-body text-ink placeholder:text-ink-40 focus:border-accent focus:outline-none transition-colors resize-y;
+  }
+  .label {
+    @apply block text-small text-ink-70 mb-1.5;
+  }
+  .section {
+    @apply py-[clamp(80px,10vw,140px)];
+  }
+  .rule-line {
+    @apply h-px bg-rule;
+  }
+  .reveal {
+    animation: reveal 600ms cubic-bezier(0.2, 0.6, 0.2, 1) both;
+  }
+}
+
+@keyframes reveal {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0ms !important;
+    transition-duration: 0ms !important;
+    scroll-behavior: auto !important;
+  }
+}

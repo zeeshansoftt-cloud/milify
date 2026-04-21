@@ -1,0 +1,109 @@
+{
+  "nav": {
+    "brand": "Milify",
+    "howItWorks": "How it works",
+    "modules": "Modules",
+    "trust": "Privacy",
+    "contact": "Contact"
+  },
+  "hero": {
+    "kicker": "For preschools",
+    "title": "Routines you have time for — even on a Monday morning.",
+    "subtitle": "Milify turns your daily routines into a simple QR flow in your pocket. Staff tick things off, leaders see what's done at a glance, and parents get messages in their own language.",
+    "primaryCta": "Book a call",
+    "secondaryCta": "How it works",
+    "badge": "Opening · Sunflower room",
+    "badgeMeta": "Updated just now",
+    "scroll": "Scroll"
+  },
+  "why": {
+    "kicker": "Why Milify",
+    "title": "A checklist shouldn't feel like another system.",
+    "body": "Opening routines on a sticky note, fire safety in a binder, parent messages across three different chats. Milify puts the day's routines on one calm page that's always close — in the hallway, on the wall, in a pocket.",
+    "bullets": [
+      "Opens with the phone camera, no app",
+      "Your own checklists, per room",
+      "One clear picture of what's done today"
+    ],
+    "imageCaption": "One page — always close"
+  },
+  "how": {
+    "kicker": "How it works",
+    "title": "From QR code to ticked-off routine in under a minute.",
+    "body": "We set up your rooms and routines. You print the QR codes and put them where the work happens. Staff log in once, then tick things off with a single tap.",
+    "steps": [
+      {
+        "n": "01",
+        "title": "Set up your routines",
+        "body": "Opening, closing, cleaning, fire safety — your own checklists, per room."
+      },
+      {
+        "n": "02",
+        "title": "Put up the QR codes",
+        "body": "Each checklist gets its own code. Print and place it where you work — by the coat hooks, in the kitchen, in the hallway."
+      },
+      {
+        "n": "03",
+        "title": "Tick off, follow up",
+        "body": "Staff mark tasks done with a tap. Leaders see in Follow-up what's done, what's missing and who did what."
+      }
+    ],
+    "imageCaption": "Scan · tick off · done",
+    "imageBadge": "under 60 s"
+  },
+  "modules": {
+    "kicker": "Three modules, no noise",
+    "title": "Exactly what a preschool needs — nothing more.",
+    "body": "Milify is three calm modules: Routines for the daily work, Follow-up for leaders, and a simple way to reach parents in their own language.",
+    "items": [
+      {
+        "title": "RUT — Routines",
+        "desc": "Checklists with frequency, owner and timestamps. Each checklist has its own QR code that opens it directly."
+      },
+      {
+        "title": "KLARA — Follow-up",
+        "desc": "Today's picture in one view. What's done, what's missing, what was missed last week. Filter by room or person."
+      },
+      {
+        "title": "LIV — Communication",
+        "desc": "Write a message in Swedish. Parents open their link and read it translated into their own language."
+      }
+    ]
+  },
+  "trust": {
+    "kicker": "Privacy at the core",
+    "title": "We store only what you type in.",
+    "body": "No tracking pixels. No behavioural analysis. No extra accounts for children or families. Staff get simple logins — parents reach their page through a private link.",
+    "bullets": [
+      "Simple accounts for staff, none for children",
+      "No third-party tracking",
+      "Data stays in the EU"
+    ],
+    "imageCaption": "Data stays in the EU"
+  },
+  "proof": {
+    "items": [
+      { "value": "<60s", "label": "From scan to ticked-off routine" },
+      { "value": "0", "label": "Apps to install" },
+      { "value": "16", "label": "Languages for parent messages" }
+    ]
+  },
+  "contact": {
+    "kicker": "Contact",
+    "title": "Reach out — it's a short call.",
+    "body": "Tell us a little about your preschool and we'll get back within a working day.",
+    "name": "Name",
+    "email": "Email",
+    "org": "Preschool",
+    "message": "Message",
+    "send": "Send",
+    "success": "Thanks, we'll be in touch shortly.",
+    "error": "Something went wrong. Please try again.",
+    "responseBadge": "Reply within one business day"
+  },
+  "footer": {
+    "rights": "Milify. All rights reserved.",
+    "privacy": "Privacy",
+    "contact": "Contact"
+  }
+}

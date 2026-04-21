@@ -1,0 +1,109 @@
+{
+  "nav": {
+    "brand": "Milify",
+    "howItWorks": "Så funkar det",
+    "modules": "Moduler",
+    "trust": "Integritet",
+    "contact": "Kontakt"
+  },
+  "hero": {
+    "kicker": "För förskolan",
+    "title": "Rutiner ni hinner med — även på morgonen.",
+    "subtitle": "Milify gör era dagliga rutiner till ett enkelt QR-flöde i fickan. Personalen bockar av, ledningen ser direkt vad som är klart och föräldrar får meddelanden på sitt språk.",
+    "primaryCta": "Boka ett samtal",
+    "secondaryCta": "Så funkar det",
+    "badge": "Öppning · Solrosen",
+    "badgeMeta": "Uppdaterad nyss",
+    "scroll": "Scrolla"
+  },
+  "why": {
+    "kicker": "Varför Milify",
+    "title": "En checklista behöver inte vara ännu ett system.",
+    "body": "Öppningsrutiner på en lapp, brandsäkerhet i en pärm, föräldrameddelanden i tre olika chattar. Milify samlar dagens rutiner på en lugn sida som alltid är nära — i tamburen, på väggen, i fickan.",
+    "bullets": [
+      "Öppnas med mobilkameran, utan app",
+      "Era egna checklistor per avdelning",
+      "En tydlig bild över vad som är gjort idag"
+    ],
+    "imageCaption": "En sida — alltid nära"
+  },
+  "how": {
+    "kicker": "Så funkar det",
+    "title": "Från QR-kod till avbockad rutin på under en minut.",
+    "body": "Vi lägger upp era avdelningar och rutiner. Ni skriver ut QR-koderna och sätter upp dem där arbetet sker. Personalen loggar in en gång och bockar sedan av med ett tryck.",
+    "steps": [
+      {
+        "n": "01",
+        "title": "Lägg upp rutinerna",
+        "body": "Öppning, stängning, städning, brandsäkerhet — era egna checklistor, per avdelning."
+      },
+      {
+        "n": "02",
+        "title": "Sätt upp QR-koderna",
+        "body": "Varje checklista får en egen kod. Skriv ut och placera där ni står — vid kapprummet, i köket, i tamburen."
+      },
+      {
+        "n": "03",
+        "title": "Bocka av, följ upp",
+        "body": "Personalen markerar klart med ett tryck. Ledningen ser i KLARA vad som är gjort, vad som saknas och vem som gjorde vad."
+      }
+    ],
+    "imageCaption": "Skanna · bocka av · klar",
+    "imageBadge": "under 60 s"
+  },
+  "modules": {
+    "kicker": "Tre moduler, inget brus",
+    "title": "Precis det förskolan behöver — inget mer.",
+    "body": "Milify är tre lugna moduler: Rutiner för det dagliga, Uppföljning för ledningen och ett enkelt sätt att nå vårdnadshavare på deras språk.",
+    "items": [
+      {
+        "title": "RUT — Rutiner",
+        "desc": "Checklistor med frekvens, ansvarig och tidsstämpel. Egen QR-kod per checklista som öppnar den direkt."
+      },
+      {
+        "title": "KLARA — Uppföljning",
+        "desc": "Dagens läge i en översikt. Vad är klart, vad saknas, vad missades förra veckan. Filtrera per avdelning eller person."
+      },
+      {
+        "title": "LIV — Kommunikation",
+        "desc": "Skriv ett meddelande på svenska. Vårdnadshavare öppnar sin länk och ser det översatt till sitt språk."
+      }
+    ]
+  },
+  "trust": {
+    "kicker": "Integritet i botten",
+    "title": "Vi lagrar bara det ni skriver in.",
+    "body": "Inga spårningspixlar. Ingen analys av beteenden. Inga extra konton för barn eller familjer. Personalkonton är enkla inloggningar — föräldrar når sin sida via en privat länk.",
+    "bullets": [
+      "Enkla konton för personal, inget för barn",
+      "Ingen tredjepartsspårning",
+      "Data stannar i EU"
+    ],
+    "imageCaption": "Data stannar i EU"
+  },
+  "proof": {
+    "items": [
+      { "value": "<60s", "label": "Från skanning till avbockad rutin" },
+      { "value": "0", "label": "Appar att installera" },
+      { "value": "16", "label": "Språk för föräldrameddelanden" }
+    ]
+  },
+  "contact": {
+    "kicker": "Kontakt",
+    "title": "Hör av er — det är ett kort samtal.",
+    "body": "Berätta kort om er förskola så återkommer vi inom en arbetsdag.",
+    "name": "Namn",
+    "email": "E-post",
+    "org": "Förskola",
+    "message": "Meddelande",
+    "send": "Skicka",
+    "success": "Tack, vi hör av oss inom kort.",
+    "error": "Något gick fel. Försök igen.",
+    "responseBadge": "Svar inom en arbetsdag"
+  },
+  "footer": {
+    "rights": "Milify. Alla rättigheter förbehållna.",
+    "privacy": "Integritet",
+    "contact": "Kontakt"
+  }
+}
