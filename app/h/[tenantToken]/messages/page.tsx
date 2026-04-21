@@ -5,7 +5,6 @@ import { departments, messages } from "@/db/schema";
 import { getCurrentUser } from "@/lib/auth";
 import { getTenantByToken } from "@/lib/customer";
 import { createMessage, deleteMessage } from "./actions";
-import { isDeeplConfigured } from "@/lib/translate";
 
 export const dynamic = "force-dynamic";
 
@@ -36,8 +35,8 @@ export default async function MessagesPage({
         <p className="kicker mb-2">Kommunikation</p>
         <h1 className="text-h1 font-display">Meddelanden till vårdnadshavare</h1>
         <p className="mt-2 text-body text-ink-70">
-          Skriv ett meddelande på svenska. Föräldrar öppnar det via sin länk och ser det översatt till
-          valt språk{isDeeplConfigured() ? "" : " (översättning kräver DeepL-nyckel)"}.
+          Skriv ett meddelande på svenska. Föräldrar öppnar det via sin länk och ser det automatiskt
+          översatt till valt språk.
         </p>
       </div>
 

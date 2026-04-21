@@ -9,7 +9,7 @@ import {
   tenants,
 } from "@/db/schema";
 import { createId } from "@/lib/tokens";
-import { isDeeplConfigured, translate } from "@/lib/translate";
+import { translate } from "@/lib/translate";
 import { setParentLanguage } from "./actions";
 import { supportedParentLangs } from "./langs";
 
@@ -137,17 +137,6 @@ export default async function ParentPage({
       });
       continue;
     }
-    if (!isDeeplConfigured()) {
-      rendered.push({
-        id: m.id,
-        title: m.title,
-        body: m.body,
-        createdAt: m.createdAt,
-        authorName: m.authorName,
-        translated: false,
-      });
-      continue;
-    }
     const [titleT, bodyT] = await Promise.all([
       translate(m.title, displayLang, m.sourceLang),
       translate(m.body, displayLang, m.sourceLang),
@@ -245,7 +234,10 @@ export default async function ParentPage({
             </ul>
           )}
 
-          {!isDeeplConfigured() && shown.some((m) => (m.sourceLang || "sv").toLowerCase() !== displayLang) && (
+          {rendered.some((r, i) => {
+            const src = (shown[i]?.sourceLang || "sv").toLowerCase();
+            return src !== displayLang && !r.translated;
+          }) && (
             <p className="mt-6 text-caption text-ink-40">{t(displayLang, "notTranslated")}</p>
           )}
         </div>
